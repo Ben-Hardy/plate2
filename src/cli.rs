@@ -2,6 +2,7 @@ use structopt::StructOpt;
 
 #[derive(Debug, StructOpt)]
 pub enum Action {
+    /// Create a basic "Hello World" C file. All additional files will be empty.
     C {
         names: Vec<String>,
     },
