@@ -1,7 +1,8 @@
 use structopt::StructOpt;
 
-mod utils;
 mod cli;
+mod commands;
+
 use cli::{Action::*, CommandLineArgs};
 fn main() {
     let CommandLineArgs {
@@ -9,7 +10,7 @@ fn main() {
     } = CommandLineArgs::from_args();
 
     match action {
-        C { names } => utils::process_c_command(names),
+        C { names } => commands::process_c_command(names),
     }
 
 }
