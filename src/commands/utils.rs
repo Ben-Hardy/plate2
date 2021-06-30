@@ -2,7 +2,6 @@ use std::fs::File;
 use std::path::Path;
 use std::io::Write;
 
-
 pub fn create_file(name: &String, extension: &String, contents: &String) {
     let filename: &str = &*format!("{}.{}", name, extension);
     let file_path: &Path = Path::new(filename);
@@ -21,6 +20,4 @@ pub fn create_file(name: &String, extension: &String, contents: &String) {
             Ok(_) => println!("{} successfully created!", display),
         }
     }
-
-
 }

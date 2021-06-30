@@ -1,6 +1,26 @@
 mod utils;
-pub fn process_c_command(files: Vec<String>) {
-    let extension: String = String::from("c");
-    let contents: String = String::from("hello world!\n");
-    utils::create_file(&files[0].clone(), &extension, &contents);
+
+fn warn() {
+    println!("You didn\'t provide any file names!");
 }
+
+pub fn process_c_command(files: Vec<String>) {
+    if files.len() == 0 {
+        warn();
+    } else {
+        let mut first: bool = true;
+        let extension: String = String::from("c");
+        let contents: String = String::from("#include <stdio.h>\n\nint main(int argc, char* argv[])\
+                                            {\n    printf(\"%s\", \"Hello world!\\n\");\n\n    return 0;\n}\n");
+        let empty_contents: String = String::from("\n");
+        for file in files {
+            if first {
+                utils::create_file(&file, &extension, &contents);
+                first = false;
+            } else {
+                utils::create_file(&file, &extension, &empty_contents);
+            }
+        }
+    }
+}
+
