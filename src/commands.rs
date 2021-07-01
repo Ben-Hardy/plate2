@@ -24,3 +24,16 @@ pub fn process_c_command(files: Vec<String>) {
     }
 }
 
+pub fn process_h_command(files: Vec<String>) {
+    if files.len() == 0 {
+        warn();
+    } else {
+        let extension: String = String::from("h");
+
+        for file in files {
+            let contents: String = String::from(format!("#ifndef _{}_\n#define _{}_\n\n\n\n\n\n#endif\n",
+                                                        file.to_uppercase(), file.to_uppercase()));
+            utils::create_file(&file, &extension, &contents);
+        }
+    }
+}

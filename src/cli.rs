@@ -6,6 +6,9 @@ pub enum Action {
     C {
         names: Vec<String>,
     },
+    H {
+        names: Vec<String>,
+    },
 }
 
 #[derive(Debug, StructOpt)]

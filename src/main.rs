@@ -11,6 +11,7 @@ fn main() {
 
     match action {
         C { names } => commands::process_c_command(names),
+        H { names } => commands::process_h_command(names),
     }
 
 }
