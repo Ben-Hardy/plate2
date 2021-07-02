@@ -4,11 +4,16 @@ use structopt::StructOpt;
 pub enum Action {
     /// Create a basic "Hello World" C file. All additional files will be empty.
     C {
-        names: Vec<String>,
+        filenames: Vec<String>,
     },
+    /// Create a C/C++ header file with pre-made ifndef guard included. Each file's guard will match the file name.
     H {
-        names: Vec<String>,
+        filenames: Vec<String>,
     },
+    // Create a matching pair of C and header files. Each C file will include their corresponding header file.
+    CH {
+        filenames: Vec<String>
+    }
 }
 
 #[derive(Debug, StructOpt)]
