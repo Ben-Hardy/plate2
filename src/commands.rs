@@ -54,4 +54,26 @@ pub fn process_ch_command(filenames: Vec<String>) {
             create_single_h_file(&filename);
         }
     }
-} 
+}
+
+pub fn process_cpp_command(filenames: Vec<String>) {
+    if filenames.len() == 0 {
+        warn();
+    } else {
+        let extension: String = String::from("cpp");
+        let contents: String = String::from("#include <iostream>\n\nusing namespace std;\n\nint \
+        main(int argc, char* argv[]){\n    cout << \"Hello World!\" << endl;\n\n    \
+                                           return 0;\n}\n");
+        let empty_contents: String = String::from("\n");
+        let mut first: bool = true;
+
+        for filename in filenames {
+            if first {
+                utils::create_file(&filename, &extension, &contents);
+                first = false;
+            } else {
+                utils::create_file(&filename, &extension, &empty_contents);
+            }
+        }
+    }
+}

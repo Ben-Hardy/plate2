@@ -10,9 +10,10 @@ fn main() {
     } = CommandLineArgs::from_args();
 
     match action {
-        C { filenames } => commands::process_c_command(filenames),
-        H { filenames } => commands::process_h_command(filenames),
-        CH { filenames} => commands::process_ch_command(filenames),
+        C { filenames }  => commands::process_c_command(filenames),
+        H { filenames }  => commands::process_h_command(filenames),
+        CH { filenames}  => commands::process_ch_command(filenames),
+        CPP { filenames} => commands::process_cpp_command(filenames),
     }
 
 }

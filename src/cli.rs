@@ -13,7 +13,10 @@ pub enum Action {
     // Create a matching pair of C and header files. Each C file will include their corresponding header file.
     CH {
         filenames: Vec<String>
-    }
+    },
+    CPP {
+        filenames: Vec<String>
+    },
 }
 
 #[derive(Debug, StructOpt)]
