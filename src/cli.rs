@@ -17,6 +17,9 @@ pub enum Action {
     CPP {
         filenames: Vec<String>
     },
+    CPPH {
+        filenames: Vec<String>
+    },
 }
 
 #[derive(Debug, StructOpt)]

@@ -77,3 +77,17 @@ pub fn process_cpp_command(filenames: Vec<String>) {
         }
     }
 }
+
+pub fn process_cpph_command(filenames: Vec<String>) {
+    if filenames.len() == 0 {
+        warn();
+    } else {
+        let cpp_ext: String = String::from("cpp");
+
+        for filename in filenames {
+            let cpp_contents: String = String::from(format!("#include \"{}.h\"\n", filename));
+            utils::create_file(&filename, &cpp_ext, &cpp_contents);
+            create_single_h_file(&filename);
+        }        
+    }
+}
