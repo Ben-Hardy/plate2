@@ -20,6 +20,9 @@ pub enum Action {
     CPPH {
         filenames: Vec<String>
     },
+    CHMAKE {
+        filenames: Vec<String>
+    },
 }
 
 #[derive(Debug, StructOpt)]

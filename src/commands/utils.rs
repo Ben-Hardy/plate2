@@ -1,10 +1,17 @@
 use std::fs::File;
 use std::path::Path;
 use std::io::Write;
+use std::fs;
 
 pub fn create_file(name: &String, extension: &String, contents: &String) {
-    let filename: &str = &*format!("{}.{}", name, extension);
-    let file_path: &Path = Path::new(filename);
+    let mut filename= name.clone();
+
+    if extension.len() > 0 {
+        filename.push_str(&*format!(".{}", extension.clone()));
+    }
+
+
+    let file_path: &Path = Path::new(&filename);
     let display = file_path.display();
 
     if file_path.is_file() {
@@ -20,4 +27,8 @@ pub fn create_file(name: &String, extension: &String, contents: &String) {
             Ok(_) => println!("{} successfully created!", display),
         }
     }
+}
+
+pub fn create_directory(name: &String) {
+    assert!(fs::create_dir_all(name).is_ok());
 }
