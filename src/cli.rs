@@ -23,6 +23,9 @@ pub enum Action {
     CHMAKE {
         filenames: Vec<String>
     },
+    CPPHMAKE {
+        filenames: Vec<String>
+    },
 }
 
 #[derive(Debug, StructOpt)]

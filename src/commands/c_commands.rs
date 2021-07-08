@@ -132,3 +132,63 @@ pub fn process_chmake_command(filenames: Vec<String>) {
         create_file(&makefile_name, &String::from(""), &makefile_contents);
     }
 }
+
+pub fn process_cpphmake_command(filenames: Vec<String>) {
+    let path: &Path = Path::new(&*filenames[0]);
+    if path.is_dir() {
+        println!("The directory {} already exists!", filenames[0]);
+    } else {
+
+        // create the directory structure first!
+        create_directory(&filenames[0]);
+
+        let src_dir: String = filenames[0].clone() + "/src";
+        create_directory(&src_dir);
+
+        let header_dir = src_dir.clone() + "/headers";
+        create_directory(&header_dir);
+
+        let target_dir: String = filenames[0].clone() + "/target";
+        create_directory(&target_dir);
+
+        let mut first: bool = true;
+        let cpp_ext: String = String::from("cpp");
+        let h_ext: String = String::from("h");
+
+        // populate the directory with files!
+        for filename in &filenames {
+            let name = src_dir.clone() + "/" + &*filename.clone();
+            let header_name = header_dir.clone() + "/" + &*filename.clone();
+            if first {
+                first = false;
+
+                let contents: String = String::from(format!("#include \"headers/{}.h\"\n\nint \
+                 main(int argc, char* argv[]){{\n    std::cout << \"Hello, world!\" << std::endl;;\n\n    \
+                return 0;\n}}\n", filename));
+                create_file(&name, &cpp_ext, &contents);
+
+                let h_contents: String = String::from(format!("#ifndef _{}_\n#define _{}_\n\n\
+                                                                  #include <iostream>\n\n\n\n#endif\n",
+                                                              filename.to_uppercase(), filename.to_uppercase()));
+                create_file(&header_name, &h_ext, &h_contents);
+            } else {
+                let cpp_contents: String = String::from(format!("#include \"headers/{}.h\"\n", filename));
+                create_file(&name, &cpp_ext, &cpp_contents);
+
+                let h_contents: String = String::from(format!("#ifndef _{}_\n#define _{}_\n\n\n\n\n\n#endif\n",
+                                                              filename.to_uppercase(), filename.to_uppercase()));
+                create_file(&header_name, &h_ext, &h_contents);
+            }
+        }
+
+        let makefile_name: String = format!("{}/makefile", filenames[0]);
+        let mut makefile_contents = String::from(format!("CC=g++\nCFLAGS=-Wall -pedantic\n\nexecutables=target/{}", filenames[0]));
+        let run_line = String::from(&format!("\n\nrun:\n\t./target/{}",filenames[0]));
+        let clean_line = String::from("\n\nclean:\n\trm -rf target/*");
+        makefile_contents.push_str(&*format!("\n\n{}: \n\t$(CC) $(CFLAGS) src/{}.cpp -o target/{}",
+                                             filenames[0], filenames[0], filenames[0]));
+        makefile_contents.push_str(&*run_line);
+        makefile_contents.push_str(&*clean_line);
+        create_file(&makefile_name, &String::from(""), &makefile_contents);
+    }
+}

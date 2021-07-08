@@ -54,3 +54,11 @@ pub fn process_chmake_command(filenames: Vec<String>) {
         c_commands::process_chmake_command(filenames);
     }
 }
+
+pub fn process_cpphmake_command(filenames: Vec<String>) {
+    if filenames.len() == 0 {
+        warn();
+    } else {
+        c_commands::process_cpphmake_command(filenames);
+    }
+}
