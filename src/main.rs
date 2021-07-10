@@ -17,6 +17,7 @@ fn main() {
         CPPH     { filenames } => commands::process_cpph_command(filenames),
         CHMAKE   { filenames } => commands::process_chmake_command(filenames),
         CPPHMAKE { filenames } => commands::process_cpphmake_command(filenames),
+        HTML     { filenames } => commands::process_html_command(filenames),
     }
 
 }

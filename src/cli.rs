@@ -26,6 +26,9 @@ pub enum Action {
     CPPHMAKE {
         filenames: Vec<String>
     },
+    HTML {
+        filenames: Vec<String>
+    }
 }
 
 #[derive(Debug, StructOpt)]

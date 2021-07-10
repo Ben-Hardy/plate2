@@ -1,5 +1,4 @@
 use crate::commands::utils::{create_directory, create_file};
-
 use std::path::Path;
 
 pub fn process_c_command(filenames: Vec<String>) {
