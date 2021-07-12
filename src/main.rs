@@ -15,9 +15,9 @@ fn main() {
         CH       { filenames } => commands::process_ch_command(filenames),
         CPP      { filenames } => commands::process_cpp_command(filenames),
         CPPH     { filenames } => commands::process_cpph_command(filenames),
-        CHMAKE   { filenames } => commands::process_chmake_command(filenames),
-        CPPHMAKE { filenames } => commands::process_cpphmake_command(filenames),
+        CPROJ   { filenames } => commands::process_cproj_command(filenames),
+        CPPPROG { filenames } => commands::process_cppproj_command(filenames),
         HTML     { filenames } => commands::process_html_command(filenames),
+        WEBSITE  { filenames } => commands::process_website_command(filenames),
     }
-
 }

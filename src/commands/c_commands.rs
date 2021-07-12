@@ -70,7 +70,7 @@ pub fn process_cpph_command(filenames: Vec<String>) {
     }
 }
 
-pub fn process_chmake_command(filenames: Vec<String>) {
+pub fn process_cproj_command(filenames: Vec<String>) {
     let path: &Path = Path::new(&*filenames[0]);
     if path.is_dir() {
         println!("The directory {} already exists!", filenames[0]);
@@ -132,7 +132,7 @@ pub fn process_chmake_command(filenames: Vec<String>) {
     }
 }
 
-pub fn process_cpphmake_command(filenames: Vec<String>) {
+pub fn process_cppproj_command(filenames: Vec<String>) {
     let path: &Path = Path::new(&*filenames[0]);
     if path.is_dir() {
         println!("The directory {} already exists!", filenames[0]);
