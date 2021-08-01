@@ -4,7 +4,7 @@ plate2.iml
 __pycache__/
 *.py[cod]
 *$py.class
-
+out/
 # C extensions
 *.so
 
